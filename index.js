@@ -1,3 +1,23 @@
+const express = require("express");
+
+// App
+const app = express();
+
+// Router
+const router = express.Router();
+
+// Home page route
+router.get('/', (req, res) => {
+    res.send("This is the home page");
+});
+
+
+// About page route
+router.get('/about/', (req, res) => {
+    res.send("This is the about page");
+});
+
+/*
 // Load HTTP module
 const http = require("http");
 
@@ -12,8 +32,16 @@ const server = http.createServer((req, res) => {
     // Send the response body "Hello World"
     res.end("Hello World!");
 });
+*/
+
+
+// Mount the router at the middleware handling path (in this case the home page)
+app.use('/', router);
+
+// Export modules
+module.exports = router;
 
 // Prints a log once the server starts listening
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+const listener = app.listen(process.env.PORT || 8000, () => {
+    console.log('Server running at ' + listener.address().port);
 });
