@@ -1,3 +1,4 @@
+// Include the express module
 const express = require("express");
 
 // App
@@ -34,6 +35,8 @@ const server = http.createServer((req, res) => {
 });
 */
 
+// Serving static files
+app.use(express.static('src'));
 
 // Mount the router at the middleware handling path (in this case the home page)
 app.use('/', router);
